@@ -6,7 +6,7 @@ const Login = () => {
   return (
     <div className='min-h-screen flex flex-col md:flex-row'>
       {/* background image */}
-      <img src={assets.bgImage} alt="bg-image" className='absolute top-0 left-0 -z-1 w-full h-full object-cover' />
+      <img src={assets.bgImage} alt="bg-image" className='absolute top-0 left-0 -z-10 w-full h-full object-cover' />
 
       {/* left section */}
       <div className='flex-1 flex flex-col justify-between items-start p-6 md:p-10 lg:pl-40'>
@@ -16,7 +16,7 @@ const Login = () => {
             <img src={assets.group_users} alt="group users" className='h-8 md:h-10'/>
             <div>
               <div className='flex'>
-                {Array(5).fill(0).map((_,i)=>(<Star key={i} className='size-4 md:size-4.5 text-transparent fill-amber-500'/>))}
+                {Array(5).fill(0).map((_,i)=>(<Star key={i} className='w-4 h-4 md:w-[1.125rem] md:h-[1.125rem] text-transparent fill-amber-500'/>))}
               </div>
               <p>Used by 12k+ developers</p>
             </div>

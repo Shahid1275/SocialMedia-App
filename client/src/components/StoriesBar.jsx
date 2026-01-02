@@ -31,10 +31,17 @@ const StoriesBar = () => {
             <p className='absolute top-[4.5rem] left-3 text-white/60 text-sm truncate max-w-[6rem]'>{story.content}</p>
             <p className='text-white absolute bottom-1 right-2 z-10 text-xs'>{moment(story.createdAt).fromNow()}</p>
             {
-                story.story_media === 'imgage' ?
-                <img src={story.story_media_url} className='w-full h-full object-cover rounded-lg'/> :
-                <video src={story.story_media_url} className='w-full h-full object-cover rounded-lg'/>
+                story.media_type !== 'text' && (
+                    <div className='absolute inset-0 z-1 rounded-lg bg-black overflow-hidden'>
+ {
+                story.media_type === 'image' ?
+                <img src={story.media_url} className='w-full h-full object-cover hover:scale-110 transition duration-500 opacity-70 hover:opacity-80'/> :
+                <video src={story.media_url} className='w-full h-full object-cover hover:scale-110 transition duration-500 opacity-70 hover:opacity-80'/> 
             }
+                    </div>
+                )
+            }
+           
         </div>
     ))
 }

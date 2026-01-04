@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft ,Sparkle,TextIcon, Upload} from 'lucide-react'
+import { toast } from 'react-hot-toast'
 const StoryModal = ({setShowModal,fetchStories}) => {
 
   const bgColors = [ '#4f46e5', '#7c3aed', '#db2777', '#e11d48', '#ca8a04', '#0d9488' ];
@@ -18,7 +19,8 @@ const StoryModal = ({setShowModal,fetchStories}) => {
     }
   }
 
-
+const handleCreateStory = async () => {
+}
   return (
     <div className='fixed inset-0 z-110 min-h-screen bg-black/80 flex blackdrop-blur text-white items-center justify-center p-4'>
       <div className='w-full max-w-md'>
@@ -61,7 +63,22 @@ const StoryModal = ({setShowModal,fetchStories}) => {
           }
 
         </div>
-
+         <div className='flex gap-2 mt-4 '>
+          <button onClick={()=>{setMode('text'); setMedia(null); setPreviewUrl(null);}} className={`flex-1 flex items-center justify-center gap-2 p-2 rounded cursor-pointer ${mode==='text' ? 'bg-white text-black' : 'bg-zinc-800 text-white'}`}>
+            <TextIcon  size={18}/> Text
+          </button>
+          <label className={ `flex-1 flex items-center justify-center gap-2 p-2 rounded cursor-pointer ${mode==='media' ? 'bg-white text-black' : 'bg-zinc-800 text-white'}`}>
+            <input type="file" accept="image/*,video/*" className='hidden' onChange={(e) => handleMediaChange(e)} onClick={() => {setMode('media'); setText('');}}/>
+            <Upload size={18}/> photo/Video
+          </label>
+         </div>
+         <button  onClick={()=> toast.promise(handleCreateStory(),{
+          loading: 'Creating Story...',
+          success: 'Story Created!',
+          error: 'Failed to create story.'
+         })}className='flex items-center justify-center gap-2 p-2 rounded w-full bg-blue-600 text-white mt-4 cursor-pointer transition' >
+             <Sparkle size={18}/> Create Story
+         </button>
       </div>
     </div>
   )

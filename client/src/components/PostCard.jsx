@@ -5,6 +5,7 @@ import moment from 'moment'
 const PostCard = ({ post }) => {
   if (!post) return null
 
+  const postwithhashtags = post.content?.replace(/#(\w+)/g, '<span class="text-indigo-600 cursor-pointer">#$1</span>'); 
   return (
     <div className='rounded-xl bg-white shadow p-4 space-y-4 w-full max-w-2xl'>
       {/* user info */}
@@ -19,6 +20,15 @@ const PostCard = ({ post }) => {
             @{post.user?.username} • {moment(post.createdAt).fromNow()}
           </div>
         </div>
+      </div>
+      {/* content */}
+   { post.content && <div className='text-gray-800 text-sm whitespace-pre-line ' dangerouslySetInnerHTML={{__html:postwithhashtags}}>
+    </div>}
+      {/* post image */}
+      <div className='grid grid-cols-2 gap-2'>
+     {post.image_urls.map((img,index) =>(
+     <img src={img} key={index} alt='images'  className={`w-full h-48 object-cover rounded-lg ${post.image_urls.length === 1 && 'col-span-2 h-auto'}`}/>
+     )) }
       </div>
     </div>
   )

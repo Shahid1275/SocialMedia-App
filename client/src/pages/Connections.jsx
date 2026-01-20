@@ -76,9 +76,24 @@ const Connections = () => {
                             </button>
                           }
                           {
+                            currentTab==="Following" && (
+                              <button className='w-full p-2 text-sm rounded bg-slate-100 hover:bg-slate-200 active:scale-95 text-black cursor-pointer transition'>
+                                unfollow
+                              </button>
+                            )
+                          }
+                           {
+                            currentTab==="Pending" && (
+                              <button className='w-full p-2 text-sm rounded bg-slate-100 hover:bg-slate-200 active:scale-95 text-black cursor-pointer transition'>
+                                Accept
+                              </button>
+                            )
+                          }
+                          {
                             currentTab==="Connections" && (
-                              <button className='w-full p-2 text-sm rounded border border-gray-300 hover:bg-gray-100 active:scale-95 text-gray-700 cursor-pointer transition'>
-                                Message <MessageSquare className='inline-block w-4 h-4 ml-1' />
+                              <button onClick={()=>navigate(`/messages/${user._id}`)}  className='w-full p-2 text-sm rounded bg-slate-100 hover:bg-slate-200 text-slate-800 active:scale-95 cursor-pointer transition flex items-center justify-center gap-1'>
+                                <MessageSquare className=' w-4 h-4 ' />
+                                Message 
                               </button>
                             )
                           }
